@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://www.pepperplate.com/services/syncmanager5.asmx?wsdl" docRef="https://www.pepperplate.com/services/syncmanager5.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://www.pepperplate.com/services/syncmanager5.asmx" xmlns:q1="http://api.pepperplate.com/" binding="q1:SyncManagerSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://www.pepperplate.com/services/syncmanager5.asmx" xmlns:q2="http://api.pepperplate.com/" binding="q2:SyncManagerSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

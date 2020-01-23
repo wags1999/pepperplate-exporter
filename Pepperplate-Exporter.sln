@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Pepperplate-Exporter.Lib", "Pepperplate-Exporter.Lib\Pepperplate-Exporter.Lib.vbproj", "{F60337AF-E213-4847-8B5F-FD2FACEF4C15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pepperplate-Exporter.App", "Pepperplate-Exporter.App\Pepperplate-Exporter.App.csproj", "{FADF1541-473B-4C4D-8033-CAD389CEE61D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F60337AF-E213-4847-8B5F-FD2FACEF4C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F60337AF-E213-4847-8B5F-FD2FACEF4C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F60337AF-E213-4847-8B5F-FD2FACEF4C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F60337AF-E213-4847-8B5F-FD2FACEF4C15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADF1541-473B-4C4D-8033-CAD389CEE61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADF1541-473B-4C4D-8033-CAD389CEE61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADF1541-473B-4C4D-8033-CAD389CEE61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADF1541-473B-4C4D-8033-CAD389CEE61D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F50E413-D1B4-4881-BBF9-A906CD62A6CF}
+	EndGlobalSection
+EndGlobal

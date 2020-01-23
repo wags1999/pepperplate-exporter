@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://api.pepperplate.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://api.pepperplate.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://api.pepperplate.com/">
+      <s:element name="RegisterUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterUserResult" type="tns:RegisterUserResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RegisterUserResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:RegisterUserStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginToken" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="RegisterUserStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Success" />
+          <s:enumeration value="EmailInUse" />
+          <s:enumeration value="InvalidPassword" />
+          <s:enumeration value="InvalidEmailAddress" />
+          <s:enumeration value="UnknownError" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RegisterUserEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="source" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterUserExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterUserExResult" type="tns:RegisterUserResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResendEmailVerification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResendEmailVerificationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SendForgotPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendForgotPasswordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GenerateLoginToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateLoginTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateLoginTokenResult" type="tns:LoginTokenResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LoginTokenResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:LoginTokenStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Flag" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="LoginTokenStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Success" />
+          <s:enumeration value="UnknownEmail" />
+          <s:enumeration value="IncorrectPassword" />
+          <s:enumeration value="AccountNotActivated" />
+          <s:enumeration value="UnknownError" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GenerateLoginTokenFB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="accessToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tokenExpiration" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateLoginTokenFBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateLoginTokenFBResult" type="tns:LoginTokenResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasUpdates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="recipeSyncToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="menuSyncToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="scheduleSyncToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasUpdatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HasUpdatesResult" type="tns:HasUpdatesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="HasUpdatesResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="HasUpdates" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipeCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MenuCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScheduleCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RetrieveRecipes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="syncToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveRecipesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveRecipesResult" type="tns:GenericItemsResultOfRecipeSync" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GenericItemsResultOfRecipeSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SynchronizationToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRecipeSync" />
+          <s:element minOccurs="1" maxOccurs="1" name="Remaining" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRecipeSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RecipeSync" nillable="true" type="tns:RecipeSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecipeSync">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsNew" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NormalizedTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Yield" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActiveTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ingredients" type="tns:ArrayOfIngredientSyncGroup" />
+          <s:element minOccurs="0" maxOccurs="1" name="Directions" type="tns:ArrayOfDirectionSyncGroup" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tags" type="tns:ArrayOfTagSync" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Favorite" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManualSource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerCreated" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerLastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientCreated" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientLastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delete" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfIngredientSyncGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="IngredientSyncGroup" nillable="true" type="tns:IngredientSyncGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IngredientSyncGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ingredients" type="tns:ArrayOfIngredientSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfIngredientSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="IngredientSync" nillable="true" type="tns:IngredientSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IngredientSync">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Quantity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LinkedRecipeId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LinkedRecipeUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParserVariationId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParserMeasurementId" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDirectionSyncGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DirectionSyncGroup" nillable="true" type="tns:DirectionSyncGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DirectionSyncGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Directions" type="tns:ArrayOfDirectionSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDirectionSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DirectionSync" nillable="true" type="tns:DirectionSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DirectionSync">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTagSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TagSync" nillable="true" type="tns:TagSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TagSync">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RetrieveRelatedRecipes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="syncToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveRelatedRecipesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveRelatedRecipesResult" type="tns:GenericItemsResultOfRelatedRecipeSync" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GenericItemsResultOfRelatedRecipeSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SynchronizationToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfRelatedRecipeSync" />
+          <s:element minOccurs="1" maxOccurs="1" name="Remaining" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRelatedRecipeSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RelatedRecipeSync" nillable="true" type="tns:RelatedRecipeSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RelatedRecipeSync">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipeServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipeClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LinkedRecipeServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LinkedRecipeClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerCreated" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientCreated" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delete" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RetrieveMenus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="syncToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveMenusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveMenusResult" type="tns:GenericItemsResultOfMenuSync" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GenericItemsResultOfMenuSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SynchronizationToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfMenuSync" />
+          <s:element minOccurs="1" maxOccurs="1" name="Remaining" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMenuSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MenuSync" nillable="true" type="tns:MenuSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MenuSync">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NormalizedTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Recipes" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Multipliers" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tags" type="tns:ArrayOfTagSync" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerCreated" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerLastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientCreated" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientLastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delete" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RetrieveSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="syncToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveScheduleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveScheduleResult" type="tns:GenericItemsResultOfCookingScheduleSync" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GenericItemsResultOfCookingScheduleSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SynchronizationToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfCookingScheduleSync" />
+          <s:element minOccurs="1" maxOccurs="1" name="Remaining" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCookingScheduleSync">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CookingScheduleSync" nillable="true" type="tns:CookingScheduleSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CookingScheduleSync">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipeId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MenuId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Multiplier" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Meal" type="tns:MealType" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerCreated" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerLastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientCreated" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientLastModified" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delete" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MealType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Breakfast" />
+          <s:enumeration value="Brunch" />
+          <s:enumeration value="Lunch" />
+          <s:enumeration value="Dinner" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ModifyRecipes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfRecipeSync" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifyRecipesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModifyRecipesResult" type="tns:BulkModifyRecipeResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BulkModifyRecipeResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:ArrayOfModifyRecipeResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfModifyRecipeResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ModifyRecipeResult" nillable="true" type="tns:ModifyRecipeResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ModifyRecipeResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Recipe" type="tns:RecipeSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UploadImageForRecipe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="recipeId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadImageForRecipeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadImageForRecipeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifyMenus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfMenuSync" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifyMenusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModifyMenusResult" type="tns:BulkModifyMenuResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BulkModifyMenuResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:ArrayOfModifyMenuResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfModifyMenuResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ModifyMenuResult" nillable="true" type="tns:ModifyMenuResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ModifyMenuResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tags" type="tns:ArrayOfTagSync" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ModifySchedules">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfCookingScheduleSync" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifySchedulesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModifySchedulesResult" type="tns:BulkModifyItemResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BulkModifyItemResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:ArrayOfModifyItemResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfModifyItemResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ModifyItemResult" nillable="true" type="tns:ModifyItemResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ModifyItemResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ModifyRelatedRecipes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfRelatedRecipeSync" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifyRelatedRecipesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModifyRelatedRecipesResult" type="tns:BulkModifyItemResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsSupportedImportSite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsSupportedImportSiteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsSupportedImportSiteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportRecipeFromUrl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportRecipeFromUrlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ImportRecipeFromUrlResult" type="tns:ImportRecipeResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ImportRecipeResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ImportRecipeFromUrlResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupportedSites" type="tns:ArrayOfImportRecipeSupportedSite" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServerId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageUrl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ImportRecipeFromUrlResult">
+        <s:restriction base="s:string">
+          <s:enumeration value="Success" />
+          <s:enumeration value="AccountError" />
+          <s:enumeration value="RecipeExistsInAccount" />
+          <s:enumeration value="UnsupportedSite" />
+          <s:enumeration value="FailedParsingOnSupportedSite" />
+          <s:enumeration value="UnknownError" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfImportRecipeSupportedSite">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ImportRecipeSupportedSite" nillable="true" type="tns:ImportRecipeSupportedSite" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ImportRecipeSupportedSite">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RegisterUserSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterUser" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserExSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterUserEx" />
+  </wsdl:message>
+  <wsdl:message name="RegisterUserExSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterUserExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResendEmailVerificationSoapIn">
+    <wsdl:part name="parameters" element="tns:ResendEmailVerification" />
+  </wsdl:message>
+  <wsdl:message name="ResendEmailVerificationSoapOut">
+    <wsdl:part name="parameters" element="tns:ResendEmailVerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendForgotPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:SendForgotPassword" />
+  </wsdl:message>
+  <wsdl:message name="SendForgotPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:SendForgotPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateLoginTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateLoginToken" />
+  </wsdl:message>
+  <wsdl:message name="GenerateLoginTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateLoginTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateLoginTokenFBSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateLoginTokenFB" />
+  </wsdl:message>
+  <wsdl:message name="GenerateLoginTokenFBSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateLoginTokenFBResponse" />
+  </wsdl:message>
+  <wsdl:message name="HasUpdatesSoapIn">
+    <wsdl:part name="parameters" element="tns:HasUpdates" />
+  </wsdl:message>
+  <wsdl:message name="HasUpdatesSoapOut">
+    <wsdl:part name="parameters" element="tns:HasUpdatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRecipesSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveRecipes" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRecipesSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveRecipesResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRelatedRecipesSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveRelatedRecipes" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRelatedRecipesSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveRelatedRecipesResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMenusSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveMenus" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMenusSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveMenusResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveSchedule" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModifyRecipesSoapIn">
+    <wsdl:part name="parameters" element="tns:ModifyRecipes" />
+  </wsdl:message>
+  <wsdl:message name="ModifyRecipesSoapOut">
+    <wsdl:part name="parameters" element="tns:ModifyRecipesResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadImageForRecipeSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadImageForRecipe" />
+  </wsdl:message>
+  <wsdl:message name="UploadImageForRecipeSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadImageForRecipeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModifyMenusSoapIn">
+    <wsdl:part name="parameters" element="tns:ModifyMenus" />
+  </wsdl:message>
+  <wsdl:message name="ModifyMenusSoapOut">
+    <wsdl:part name="parameters" element="tns:ModifyMenusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModifySchedulesSoapIn">
+    <wsdl:part name="parameters" element="tns:ModifySchedules" />
+  </wsdl:message>
+  <wsdl:message name="ModifySchedulesSoapOut">
+    <wsdl:part name="parameters" element="tns:ModifySchedulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModifyRelatedRecipesSoapIn">
+    <wsdl:part name="parameters" element="tns:ModifyRelatedRecipes" />
+  </wsdl:message>
+  <wsdl:message name="ModifyRelatedRecipesSoapOut">
+    <wsdl:part name="parameters" element="tns:ModifyRelatedRecipesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsSupportedImportSiteSoapIn">
+    <wsdl:part name="parameters" element="tns:IsSupportedImportSite" />
+  </wsdl:message>
+  <wsdl:message name="IsSupportedImportSiteSoapOut">
+    <wsdl:part name="parameters" element="tns:IsSupportedImportSiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportRecipeFromUrlSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportRecipeFromUrl" />
+  </wsdl:message>
+  <wsdl:message name="ImportRecipeFromUrlSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportRecipeFromUrlResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SyncManagerSoap">
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input message="tns:RegisterUserSoapIn" />
+      <wsdl:output message="tns:RegisterUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUserEx">
+      <wsdl:input message="tns:RegisterUserExSoapIn" />
+      <wsdl:output message="tns:RegisterUserExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResendEmailVerification">
+      <wsdl:input message="tns:ResendEmailVerificationSoapIn" />
+      <wsdl:output message="tns:ResendEmailVerificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendForgotPassword">
+      <wsdl:input message="tns:SendForgotPasswordSoapIn" />
+      <wsdl:output message="tns:SendForgotPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateLoginToken">
+      <wsdl:input message="tns:GenerateLoginTokenSoapIn" />
+      <wsdl:output message="tns:GenerateLoginTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateLoginTokenFB">
+      <wsdl:input message="tns:GenerateLoginTokenFBSoapIn" />
+      <wsdl:output message="tns:GenerateLoginTokenFBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HasUpdates">
+      <wsdl:input message="tns:HasUpdatesSoapIn" />
+      <wsdl:output message="tns:HasUpdatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRecipes">
+      <wsdl:input message="tns:RetrieveRecipesSoapIn" />
+      <wsdl:output message="tns:RetrieveRecipesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRelatedRecipes">
+      <wsdl:input message="tns:RetrieveRelatedRecipesSoapIn" />
+      <wsdl:output message="tns:RetrieveRelatedRecipesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMenus">
+      <wsdl:input message="tns:RetrieveMenusSoapIn" />
+      <wsdl:output message="tns:RetrieveMenusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveSchedule">
+      <wsdl:input message="tns:RetrieveScheduleSoapIn" />
+      <wsdl:output message="tns:RetrieveScheduleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRecipes">
+      <wsdl:input message="tns:ModifyRecipesSoapIn" />
+      <wsdl:output message="tns:ModifyRecipesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadImageForRecipe">
+      <wsdl:input message="tns:UploadImageForRecipeSoapIn" />
+      <wsdl:output message="tns:UploadImageForRecipeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyMenus">
+      <wsdl:input message="tns:ModifyMenusSoapIn" />
+      <wsdl:output message="tns:ModifyMenusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifySchedules">
+      <wsdl:input message="tns:ModifySchedulesSoapIn" />
+      <wsdl:output message="tns:ModifySchedulesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRelatedRecipes">
+      <wsdl:input message="tns:ModifyRelatedRecipesSoapIn" />
+      <wsdl:output message="tns:ModifyRelatedRecipesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsSupportedImportSite">
+      <wsdl:input message="tns:IsSupportedImportSiteSoapIn" />
+      <wsdl:output message="tns:IsSupportedImportSiteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportRecipeFromUrl">
+      <wsdl:input message="tns:ImportRecipeFromUrlSoapIn" />
+      <wsdl:output message="tns:ImportRecipeFromUrlSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SyncManagerSoap" type="tns:SyncManagerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterUser">
+      <soap:operation soapAction="http://api.pepperplate.com/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUserEx">
+      <soap:operation soapAction="http://api.pepperplate.com/RegisterUserEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResendEmailVerification">
+      <soap:operation soapAction="http://api.pepperplate.com/ResendEmailVerification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendForgotPassword">
+      <soap:operation soapAction="http://api.pepperplate.com/SendForgotPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateLoginToken">
+      <soap:operation soapAction="http://api.pepperplate.com/GenerateLoginToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateLoginTokenFB">
+      <soap:operation soapAction="http://api.pepperplate.com/GenerateLoginTokenFB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasUpdates">
+      <soap:operation soapAction="http://api.pepperplate.com/HasUpdates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRecipes">
+      <soap:operation soapAction="http://api.pepperplate.com/RetrieveRecipes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRelatedRecipes">
+      <soap:operation soapAction="http://api.pepperplate.com/RetrieveRelatedRecipes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMenus">
+      <soap:operation soapAction="http://api.pepperplate.com/RetrieveMenus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveSchedule">
+      <soap:operation soapAction="http://api.pepperplate.com/RetrieveSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRecipes">
+      <soap:operation soapAction="http://api.pepperplate.com/ModifyRecipes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadImageForRecipe">
+      <soap:operation soapAction="http://api.pepperplate.com/UploadImageForRecipe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyMenus">
+      <soap:operation soapAction="http://api.pepperplate.com/ModifyMenus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifySchedules">
+      <soap:operation soapAction="http://api.pepperplate.com/ModifySchedules" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRelatedRecipes">
+      <soap:operation soapAction="http://api.pepperplate.com/ModifyRelatedRecipes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSupportedImportSite">
+      <soap:operation soapAction="http://api.pepperplate.com/IsSupportedImportSite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportRecipeFromUrl">
+      <soap:operation soapAction="http://api.pepperplate.com/ImportRecipeFromUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SyncManagerSoap12" type="tns:SyncManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterUser">
+      <soap12:operation soapAction="http://api.pepperplate.com/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUserEx">
+      <soap12:operation soapAction="http://api.pepperplate.com/RegisterUserEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResendEmailVerification">
+      <soap12:operation soapAction="http://api.pepperplate.com/ResendEmailVerification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendForgotPassword">
+      <soap12:operation soapAction="http://api.pepperplate.com/SendForgotPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateLoginToken">
+      <soap12:operation soapAction="http://api.pepperplate.com/GenerateLoginToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateLoginTokenFB">
+      <soap12:operation soapAction="http://api.pepperplate.com/GenerateLoginTokenFB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasUpdates">
+      <soap12:operation soapAction="http://api.pepperplate.com/HasUpdates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRecipes">
+      <soap12:operation soapAction="http://api.pepperplate.com/RetrieveRecipes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRelatedRecipes">
+      <soap12:operation soapAction="http://api.pepperplate.com/RetrieveRelatedRecipes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMenus">
+      <soap12:operation soapAction="http://api.pepperplate.com/RetrieveMenus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveSchedule">
+      <soap12:operation soapAction="http://api.pepperplate.com/RetrieveSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRecipes">
+      <soap12:operation soapAction="http://api.pepperplate.com/ModifyRecipes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadImageForRecipe">
+      <soap12:operation soapAction="http://api.pepperplate.com/UploadImageForRecipe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyMenus">
+      <soap12:operation soapAction="http://api.pepperplate.com/ModifyMenus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifySchedules">
+      <soap12:operation soapAction="http://api.pepperplate.com/ModifySchedules" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRelatedRecipes">
+      <soap12:operation soapAction="http://api.pepperplate.com/ModifyRelatedRecipes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSupportedImportSite">
+      <soap12:operation soapAction="http://api.pepperplate.com/IsSupportedImportSite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportRecipeFromUrl">
+      <soap12:operation soapAction="http://api.pepperplate.com/ImportRecipeFromUrl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SyncManager">
+    <wsdl:port name="SyncManagerSoap" binding="tns:SyncManagerSoap">
+      <soap:address location="https://www.pepperplate.com/services/syncmanager5.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SyncManagerSoap12" binding="tns:SyncManagerSoap12">
+      <soap12:address location="https://www.pepperplate.com/services/syncmanager5.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
